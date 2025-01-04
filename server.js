@@ -8,7 +8,7 @@ const todos = [];
 app.use(express.json());
 
 app.get("/get-all-todos", (request, response) => {
-  const message = !todos.length ? "todos empty" : "ye lo sab todos";
+  const message = !todos.length ? "todos empty" : "ye sab  todos";
 
   response.send({ data: todos, message: message });
 });
@@ -22,17 +22,15 @@ app.post("/add-todo", (request, response) => {
 
   todos.push(obj);
 
-  response.send({ message: "todo add hogya hy", data: obj });
+  response.send({ message: "todo add hogya h", data: obj });
 });
 
-// ye todo ko update ya edit karne ki api ki
 app.patch("/edit-todo/:id", (request, response) => {
   const id = request.params.id;
 
   let isFound = false;
   for (let i = 0; i < todos.length; i++) {
     if (todos[i].id === id) {
-      // idher product mil chuka hy (ab us product ko edit karna hy)
 
       todos[i].todoContent = request.body.todoContent;
       isFound = true;
@@ -43,7 +41,7 @@ app.patch("/edit-todo/:id", (request, response) => {
   if (isFound) {
     response.status(201).send({
       data: { todoContent: request.body.todoContent, id: id },
-      message: "todo updated successfully!",
+      message: "todo updated done",
     });
   } else {
     response.status(200).send({ data: null, message: "todo not found" });
@@ -66,7 +64,7 @@ app.delete("/delete-todo/:id", (request, response) => {
 
   if (isFound) {
     response.status(201).send({
-      message: "todo deleted successfully!",
+      message: "todo deleted done",
     });
   } else {
     response.status(200).send({ data: null, message: "todo not found" });
@@ -76,10 +74,10 @@ app.delete("/delete-todo/:id", (request, response) => {
 //
 
 app.use((request, response) => {
-  response.status(404).send("no route found!");
+  response.status(404).send("no  found!");
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Example app list on port ${port}`);
 });
 
